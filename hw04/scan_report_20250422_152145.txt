@@ -1,0 +1,102 @@
+===================================================
+           YARA SECURITY SCANNER REPORT             
+===================================================
+
+Scan Start Time: 2025-04-22 15:19:41
+Scan End Time: 2025-04-22 15:19:41
+Duration: 0:00:00
+Files Scanned: 11
+Suspicious Files Detected: 10
+Scan Location: C:/Users/kralouf/Class Folders/CYBR3220/Python Projects/python_YARA/malicious_patterns
+
+YARA Rule Used:
+---------------------------------------------------
+
+rule DetectSuspiciousPatterns{
+    meta:
+        description = "Detects common suspicious commands and indicators"
+        author = "Louis Kraimer"
+        severity = "high"
+        date = "2025-04-22"
+
+    strings:
+        $a = "powershell" nocase
+        $b = "curl" nocase
+        $c = "cmd.exe" nocase
+        $d = "wget" nocase
+        $e = "base64" nocase
+        $f = "net user" nocase
+        $g = "/wp-admin" nocase
+        $h = "/phpmyadmin" nocase
+        $i = ".env" nocase
+        $j = "' OR '1'='1" nocase
+        $k = "--" 
+        $l = "&&"
+        $m = "||"
+        $n = "$("
+        $o = "exec(" nocase
+        $p = "system(" nocase
+        $q = "eval(" nocase
+        $r = "<script>" nocase
+        $s = "document.cookie" nocase
+        $t = "fetch(" nocase
+	$u = "hi amalan" nocase
+
+    condition:
+        any of them
+}
+
+
+
+SCAN RESULTS:
+---------------------------------------------------
+File: C:/Users/kralouf/Class Folders/CYBR3220/Python Projects/python_YARA/malicious_patterns\base64.txt
+  Detection: base64 (encoding)
+  Detection: -- (SQL comment)
+--------------------------------------------------
+File: C:/Users/kralouf/Class Folders/CYBR3220/Python Projects/python_YARA/malicious_patterns\cmd.txt
+  Detection: cmd.exe (command shell)
+--------------------------------------------------
+File: C:/Users/kralouf/Class Folders/CYBR3220/Python Projects/python_YARA/malicious_patterns\curl.txt
+  Detection: curl (data transfer)
+--------------------------------------------------
+File: C:/Users/kralouf/Class Folders/CYBR3220/Python Projects/python_YARA/malicious_patterns\hw04.txt
+  Detection: unknown
+--------------------------------------------------
+File: C:/Users/kralouf/Class Folders/CYBR3220/Python Projects/python_YARA/malicious_patterns\injection.txt
+  Detection: command injection: &&
+--------------------------------------------------
+File: C:/Users/kralouf/Class Folders/CYBR3220/Python Projects/python_YARA/malicious_patterns\powershell.txt
+  Detection: powershell (command shell)
+--------------------------------------------------
+File: C:/Users/kralouf/Class Folders/CYBR3220/Python Projects/python_YARA/malicious_patterns\SampleFilemalicious_patterns.txt
+  Detection: powershell (command shell)
+  Detection: curl (data transfer)
+  Detection: cmd.exe (command shell)
+  Detection: wget (download utility)
+  Detection: base64 (encoding)
+  Detection: /wp-admin (WordPress admin)
+  Detection: .env (environment file)
+  Detection: -- (SQL comment)
+  Detection: command injection: &&
+--------------------------------------------------
+File: C:/Users/kralouf/Class Folders/CYBR3220/Python Projects/python_YARA/malicious_patterns\test.txt
+  Detection: powershell (command shell)
+  Detection: curl (data transfer)
+  Detection: cmd.exe (command shell)
+  Detection: wget (download utility)
+  Detection: base64 (encoding)
+  Detection: /wp-admin (WordPress admin)
+  Detection: /phpmyadmin (database admin)
+  Detection: .env (environment file)
+  Detection: command injection: &&
+  Detection: command injection: ||
+  Detection: command injection: $(
+--------------------------------------------------
+File: C:/Users/kralouf/Class Folders/CYBR3220/Python Projects/python_YARA/malicious_patterns\wget.txt
+  Detection: wget (download utility)
+  Detection: .env (environment file)
+--------------------------------------------------
+File: C:/Users/kralouf/Class Folders/CYBR3220/Python Projects/python_YARA/malicious_patterns\wp_admin.txt
+  Detection: /wp-admin (WordPress admin)
+--------------------------------------------------
